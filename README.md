@@ -1,3 +1,6 @@
+# Trabajo desarrollo
+[Ver notas del estudiante](CHOICES.md)
+
 # rn
 
 Plantilla para comenzar con el Trabajo Práctico Integrador de la cursada 2020 de la materia
