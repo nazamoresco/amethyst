@@ -12,5 +12,15 @@ $LOAD_PATH.unshift(File.absolute_path("#{__dir__}/../lib"))
 # Requiere `lib/rn.rb` como punto de partida para cargar todas las definiciones necesarias
 require 'rn'
 
+# # Interfaz delegada a los procesos por ahora
+# # Wraps process call
+# class Dry::CLI::Command
+#   def call(**args)
+#     puts process(**args)
+#   end
+# end
+
+RN::Configuration::start
+
 # Ejecuta, utilizando la gema dry-cli, los comandos que permiten utilizar la herramienta
 Dry::CLI.new(RN::Commands).call

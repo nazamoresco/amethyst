@@ -4,7 +4,7 @@ module RN
       desc 'Print version'
 
       def call(*)
-        puts RN::VERSION
+        RN::VERSION
       end
     end
   end
