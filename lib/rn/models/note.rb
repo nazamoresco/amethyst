@@ -45,7 +45,8 @@ module RN::Models
     end
 
     def rename new_name
-      File.rename path, File.join(book.path, new_name)
+      # Seria mejor pasarle el path del new_note
+      File.rename path, File.join(book.path, new_name + ".rn")
     end
 
     def show
