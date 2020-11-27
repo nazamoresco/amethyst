@@ -1,6 +1,4 @@
 require "spec_helper"
-require "rn/commands"
-require "rn/models"
 
 describe "show note" do
   context "a user tries to show a existing note" do

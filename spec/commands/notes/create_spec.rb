@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'rn/commands'
-require 'rn/models'
 
 describe "Create note command" do
   context "a user creates a note with an already existing file name without the force flag" do
@@ -9,7 +7,7 @@ describe "Create note command" do
 
       expect {
         RN::Commands::Notes::Create.new.call(title: "test")
-      }.to output("Can't create test, the note already exist.\nTry using the flag force.\n").to_stdout
+      }.to output("test already exists in global.\nTry using the flag force.\n").to_stdout
     end
   end
 
@@ -18,7 +16,7 @@ describe "Create note command" do
       RN::Commands::Notes::Create.new.call(title: "test")
 
       expect {
-        RN::Commands::Notes::Create.new.call(title: "test", force:true)
+        RN::Commands::Notes::Create.new.call(title: "test", force: true)
       }.to output("test created.\n").to_stdout
     end
   end
@@ -27,7 +25,7 @@ describe "Create note command" do
     it "fails" do
     expect {
       RN::Commands::Notes::Create.new.call(title: "test", book: "no-where-to-be-find")
-    }.to output("Can't create the note, the book no-where-to-be-find doesn't exist.\n").to_stdout
+    }.to output("no-where-to-be-find doesn't exist.\n").to_stdout
     end
   end
 
@@ -44,11 +42,11 @@ describe "Create note command" do
     it "creates the note" do
       expect {
         RN::Commands::Notes::Create.new.call title: "-name>"
-      }.to output("Invalid name. Valid chars: Letters, numbers and underscore.\n").to_stdout
+      }.to output("-name> is a invalid name. Valid chars: Letters, numbers and underscore.\n").to_stdout
 
       expect {
         RN::Commands::Notes::Create.new.call title: "name//"
-      }.to output("Invalid name. Valid chars: Letters, numbers and underscore.\n").to_stdout
+      }.to output("name// is a invalid name. Valid chars: Letters, numbers and underscore.\n").to_stdout
     end
   end
 end

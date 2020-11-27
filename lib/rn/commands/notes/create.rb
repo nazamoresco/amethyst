@@ -12,20 +12,15 @@ module RN::Commands::Notes
       'todo --force                # Creates the note even if it already exits'
     ]
 
-    def call(title:, book: "global", force: false)
+    def call(title:, book: RN::Configuration::DEFAULT_BOOK, force: false)
       note = RN::Models::Note.new(title, book)
 
-      if title =~ /\W/
-        puts "Invalid name. Valid chars: Letters, numbers and underscore."
-      elsif note.exists? && !force
-        puts "Can't create test, the note already exist.\n"\
-        "Try using the flag force."
-      elsif !note.book_exists?
-        puts "Can't create the note, the book #{book} doesn't exist."
-      else
-        note.persist
-        puts "#{title} created."
-      end
+      note.persist force: force
+      puts "#{title} created."
+    rescue RN::Exceptions::ExistingNote => e
+      puts e.message + "\nTry using the flag force."
+    rescue RN::Exceptions::ModelException => e
+      puts e.message
     end
   end
 end

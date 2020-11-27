@@ -13,12 +13,10 @@ module RN::Commands::Notes
 
     def call(title:, book: "global")
       note = RN::Models::Note.open(title, book)
-      if note.exists?
-        note.delete
-        puts "#{title} deleted."
-      else
-        puts "Can't delete, #{title} doesn't exist in #{book}."
-      end
+      note.delete
+      puts "#{title} deleted."
+    rescue RN::Exceptions::ModelException => e
+      puts e.message
     end
   end
 end

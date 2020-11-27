@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'rn/commands'
-require 'rn/models'
 
 describe "note retitle command" do
   context "the user retitles a note with a valid new title" do
@@ -17,7 +15,7 @@ describe "note retitle command" do
     it "doesn't retitle the note and fails" do
       expect {
         RN::Commands::Notes::Retitle.new.call old_title: "old_title", new_title: "new_title"
-      }.to output("Can't retitle old_title, that doesn't exist.\n").to_stdout
+      }.to output("old_title doesn't exist in global.\n").to_stdout
     end
   end
 
@@ -28,7 +26,7 @@ describe "note retitle command" do
 
       expect {
         RN::Commands::Notes::Retitle.new.call old_title: "old_title", new_title: "new_title"
-      }.to output("Can't retitle to new_title, that note already exists.\n").to_stdout
+      }.to output("new_title already exists in global.\n").to_stdout
     end
   end
 end

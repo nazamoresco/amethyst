@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'rn/commands'
-require 'rn/models'
 
 describe "book creation command" do
   context "the user tries to delete a book that exists" do
@@ -16,7 +14,7 @@ describe "book creation command" do
     it "doesn't delete the book and fails" do
       expect {
         RN::Commands::Books::Delete.new.call name: "valid_name"
-      }.to output("Book valid_name doesn't exist.\n").to_stdout
+      }.to output("valid_name doesn't exist.\n\n").to_stdout
     end
   end
 end

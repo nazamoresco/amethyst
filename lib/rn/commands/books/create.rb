@@ -11,12 +11,10 @@ module RN::Commands::Books
 
     def call(name:)
       book = RN::Models::Book.new name
-      if book.exists?
-        puts "The book already exist."
-      else
-        book.persist
-        puts "Book created."
-      end
+      book.persist
+      puts "Book created."
+    rescue RN::Exceptions::ModelException => e
+      puts e.message
     end
   end
 end

@@ -15,14 +15,10 @@ module RN::Commands::Notes
     def call(old_title:, new_title:, book: "global")
       old_note = RN::Models::Note.open old_title, book
       new_note = RN::Models::Note.open new_title, book
-      if !old_note.exists?
-        puts "Can't retitle #{old_title}, that doesn't exist."
-      elsif new_note.exists?
-        puts "Can't retitle to #{new_title}, that note already exists."
-      else
-        old_note.rename new_title
-        puts "#{old_title} retitled to #{new_title}."
-      end
+      old_note.rename new_note
+      puts "#{old_title} retitled to #{new_title}."
+    rescue RN::Exceptions::ModelException => e
+      puts e.message
     end
   end
 end

@@ -1,13 +1,11 @@
 require 'spec_helper'
-require 'rn/commands'
-require 'rn/models'
 
 describe "delete note" do
   context "the user tries to delete a non existing note" do
     it "fails" do
       expect {
         RN::Commands::Notes::Delete.new.call title: "note_test", book: "book_test"
-      }.to output("Can't delete, note_test doesn't exist in book_test.\n").to_stdout
+      }.to output("book_test doesn't exist.\n").to_stdout
     end
   end
 

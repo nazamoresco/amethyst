@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'rn/commands'
-require 'rn/models'
 
 describe "note list command" do
   context "the user ask for a note list" do

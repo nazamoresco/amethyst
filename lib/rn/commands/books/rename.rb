@@ -14,14 +14,11 @@ module RN::Commands::Books
     def call(old_name:, new_name:)
       old_book = RN::Models::Book.new old_name
       new_book = RN::Models::Book.new new_name
-      if !old_book.exists?
-        puts "Can't rename #{old_name}, that doesn't exist."
-      elsif new_book.exists?
-        puts "Can't rename to #{new_name}, that book already exists."
-      else
-        old_book.rename new_name
-        puts "#{old_name} renamed to #{new_name}."
-      end
+
+      old_book.rename new_book
+      puts "#{old_name} renamed to #{new_name}."
+    rescue RN::Exceptions::ModelException => e
+      puts e.message
     end
   end
 end

@@ -16,6 +16,8 @@ module RN::Models
     end
 
     def delete
+      validate_existence
+
       FileUtils.rm_rf path
       FileUtils.mkdir path if title == RN::Configuration::DEFAULT_BOOK
     end
@@ -34,16 +36,45 @@ module RN::Models
       RN::Models::Note.list([title]).any?
     end
 
-    def rename new_name
-      new_path = File.join RN::Configuration::BASE_PATH, new_name
-      File.rename path, new_path
+    def notes
+      RN::Models::Note.list([title]).map { |note_title| RN::Models::Note.open note_title.split("/")[1], title}
+    end
 
-      self.title = new_name
-      self.path = new_path
+    def rename new_book
+      validate_existence
+      new_book.validate_absence
+
+      File.rename path, new_book.path
+
+      self.title = new_book.title
+      self.path = new_book.path
     end
 
     def persist
+      validate_absence
+
       Dir.mkdir path
+    end
+
+    def export(format)
+      validate_existence
+      validate_format(format)
+
+      notes.each { |note| note.export format}
+      self
+    end
+
+    # Validations
+    def validate_absence
+      raise RN::Exceptions::ExistingBook, "#{title} already exists." if exists?
+    end
+
+    def validate_existence
+      raise RN::Exceptions::MissingBook, "#{title} doesn't exist." unless exists?
+    end
+
+    def validate_format(format)
+      raise RN::Exceptions::InvalidFormat, "#{format} is not a valid format yet." unless ["pdf", "html"].any? format
     end
   end
 end

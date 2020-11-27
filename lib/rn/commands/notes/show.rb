@@ -13,11 +13,9 @@ module RN::Commands::Notes
 
     def call(title:, book: "global")
       note = RN::Models::Note.open title, book
-      if note.exists?
-        puts note.show
-      else
-        puts "#{title} doesn't exist in #{book}."
-      end
+      puts note.show
+    rescue RN::Exceptions::ModelException => e
+      puts e.message
     end
   end
 end

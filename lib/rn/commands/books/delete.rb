@@ -19,12 +19,10 @@ module RN::Commands::Books
       outputs = book_names.map do |book_name|
         book = RN::Models::Book.open book_name
 
-        if !book.exists?
-          "Book #{book.title} doesn't exist."
-        else
-          book.delete
-          "Book #{book.title} deleted."
-        end
+        book.delete
+        "Book #{book.title} deleted."
+      rescue RN::Exceptions::ModelException => e
+        puts e.message
       end.join "\n"
 
       puts outputs

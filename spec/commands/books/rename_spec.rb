@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'rn/commands'
-require 'rn/models'
 
 describe "book rename command" do
   context "the user renames a book with a valid new name" do
@@ -17,7 +15,7 @@ describe "book rename command" do
     it "doesn't rename the book and fails" do
       expect {
         RN::Commands::Books::Rename.new.call old_name: "old_name", new_name: "new_name"
-      }.to output("Can't rename old_name, that doesn't exist.\n").to_stdout
+      }.to output("old_name doesn't exist.\n").to_stdout
     end
   end
 
@@ -28,7 +26,7 @@ describe "book rename command" do
 
       expect {
         RN::Commands::Books::Rename.new.call old_name: "old_name", new_name: "new_name"
-      }.to output("Can't rename to new_name, that book already exists.\n").to_stdout
+      }.to output("new_name already exists.\n").to_stdout
     end
   end
 end
