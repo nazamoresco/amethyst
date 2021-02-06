@@ -1,3 +1,5 @@
+<% require 'github/markup' %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -7,13 +9,14 @@
 
 <p>
   <strong>Content:</strong>
-  <%= @note.content %>
+  <%= sanitize GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, @note.content) %>
 </p>
 
 <p>
   <strong>Book:</strong>
-  <%= @note.book %>
+  <%= link_to @note.book.title, book_path(@note.book) %>
 </p>
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Export', export_note_index_path(@note.id), method: :post, target: :_blank  %> |
 <%= link_to 'Back', notes_path %>

@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :book %>
-    <%= form.text_field :book %>
+    <%= form.collection_select :book, Book.all, :id, :title, prompt: true  %>
   </div>
 
   <div class="actions">

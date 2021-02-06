@@ -64,13 +64,15 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def note_params
-      params.require(:note).permit(:title, :content, :book)
-    end
+  # Only allow a list of trusted parameters through.
+  def note_params
+    p = params.require(:note).permit(:title, :content, :book)
+    p[:book] = Book.find(p[:book].to_i)
+    p
+  end
 end
