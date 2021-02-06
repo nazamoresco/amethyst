@@ -1,3 +1,3 @@
 class Book < ApplicationRecord
-  has_many :books
+  has_many :notes
 end

@@ -1,0 +1,5 @@
+<% @book.notes.each do |note| %>
+  <h4> <%= note.title %> </h2>
+  <hr/>
+  <%= sanitize GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, note.content) %>
+<% end %>
