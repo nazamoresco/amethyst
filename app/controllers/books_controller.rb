@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = current_user.books
   end
 
   # GET /books/1
@@ -64,11 +64,14 @@ class BooksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params[:id])
+      book = Book.find(params[:id])
+      @book = book if book.user == current_user
     end
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title)
+      p = params.require(:book).permit(:title)
+      p[:user] = current_user
+      p
     end
 end
