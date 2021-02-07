@@ -1,7 +1,7 @@
 body {
   background-color: #fff;
-  color: #333;
-  margin: 33px; }
+  margin: 0;
+  padding: 33px }
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -14,14 +14,13 @@ pre {
   font-size: 11px; }
 
 a {
-  color: #000; }
+  text-decoration: none;
+  &:visited, &:hover {
+    color: #333333;
+  }
+}
 
-a:visited {
-  color: #666; }
-
-a:hover {
-  color: #fff;
-  background-color: #000; }
+a:hover {}
 
 th {
   padding-bottom: 5px; }

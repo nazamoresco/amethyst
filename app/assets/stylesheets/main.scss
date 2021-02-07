@@ -1,0 +1,40 @@
+
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  img {
+    height: 5rem;
+  }
+
+  h1 {
+    width: 30%;
+    color: #333333;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #333333;
+  }
+}
+
+.nav {
+  position: fixed;
+  background-color: white;
+  border-top: 1px solid #333333;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 95%;
+  left: 2.5%;
+  bottom: 0;
+  padding: 1rem;
+
+  div {
+    display: flex;
+    a {
+      color:  #333333;
+      font-size: 1.5rem;
+      margin-right: 2rem;
+    }
+  }
+}

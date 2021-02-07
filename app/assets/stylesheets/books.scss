@@ -1,3 +1,89 @@
 // Place all the styles related to the Books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// #333333
+
+.book {
+  width: 225px;
+  border: 1.5px solid #333333;
+  background: #333333;
+  text-align: center;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 1px 1px 0px #feefc4, 2px 2px 0px #d1bba8, inset 2px 0px 0px #d1bba8;
+  border-radius: 5px 15px 15px 5px;
+
+  .brand {
+    position: absolute;
+    background: #c8c8c8;
+    height: 100%;
+    width: 10%;
+    right: 10px;
+  }
+
+  h2 {
+    margin: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    a {
+      margin-left: 10px;
+    }
+  }
+
+  .links-list {
+    margin: 2rem 0;
+    background-color: white;
+    padding-right: 2rem;
+
+    .links-pair {
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem;
+
+      div {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        a {
+          margin-left: 4px;
+          color: #333333;
+        }
+      }
+    }
+  }
+}
+
+.new-book-link {
+  i {
+    color: #a67cde;
+  }
+}
+
+.book-form {
+  input {
+    color: #333333;
+    border: 1px solid #333333;
+
+    &:focus-visible {
+      border: none;
+    }
+
+    &[type="text"] {
+      margin: 2rem;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+  input[type="submit"] {
+    cursor: pointer;
+    border: none;
+  }
+}

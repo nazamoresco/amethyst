@@ -7,9 +7,20 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('amethyst.png') %>
   </head>
 
   <body>
+    <div class="nav">
+      <div>
+        <%= link_to "Books", books_path %>
+        <%= link_to "Notes", notes_path %>
+      </div>
+      <div>
+        <%= link_to "Log in", new_user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
