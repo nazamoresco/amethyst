@@ -6,6 +6,7 @@
 
 .book {
   width: 225px;
+  margin: 1rem;
   border: 1.5px solid #333333;
   background: #333333;
   text-align: center;
@@ -28,11 +29,6 @@
   h2 {
     margin: 2rem;
     color: white;
-    display: flex;
-    align-items: center;
-    a {
-      margin-left: 10px;
-    }
   }
 
   .links-list {
@@ -66,6 +62,11 @@
 }
 
 .book-form {
+  div {
+    display: flex;
+    align-items: center;
+  }
+
   input {
     color: #333333;
     border: 1px solid #333333;
@@ -82,8 +83,25 @@
     }
   }
 
+  textarea, select {
+    color: #333333;
+    margin: 2rem;
+    border: none;
+    border-bottom: 1px solid #333333;
+  }
+
   input[type="submit"] {
     cursor: pointer;
     border: none;
   }
+}
+
+.show-book {
+  display: flex;
+}
+
+.book-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

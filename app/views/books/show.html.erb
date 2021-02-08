@@ -1,28 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<div class="book">
-  <div class="brand"></div>
-  <h2><%= @book.title %></h2>
-  <div class="links-list">
-    <div class="links-pair">
-      <div>
-        <i class="material-icons">visibility</i>
-        <%= link_to 'Show', @book %>
+<div class="header">
+  <div class="section-title">
+    <img src=<%=asset_path('amethyst.png')%>>
+    <h2>
+      Show book
+      <%= link_to new_note_path, class: "new-book-link" do %>
+        <i class="material-icons">add_circle</i>
+      <% end %>
+    </h2>
+  </div>
+</div>
+
+<div class="show-book">
+  <div class="book">
+    <div class="brand"></div>
+    <h2><%= @book.title %></h2>
+    <div class="links-list">
+      <div class="links-pair">
+        <div>
+          <i class="material-icons">visibility</i>
+          <%= link_to 'Show', @book %>
+        </div>
+        <div>
+          <i class="material-icons">create</i>
+          <%= link_to 'Edit', edit_book_path(@book) %>
+        </div>
       </div>
-      <div>
-        <i class="material-icons">create</i>
-        <%= link_to 'Edit', edit_book_path(@book) %>
+      <div class="links-pair">
+        <div>
+          <i class="material-icons">delete</i>
+          <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+        <div>
+          <i class="material-icons">import_export</i>
+          <%= link_to 'Export', export_book_index_path(@book.id), method: :post %>
+        </div>
       </div>
     </div>
-    <div class="links-pair">
-      <div>
-        <i class="material-icons">delete</i>
-        <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+
+  <div class="notepaper-container">
+  <% @book.notes.each do |note|%>
+    <div>
+      <div class="notepaper">
+        <h1 class="align">
+          <%= note.title %> <i>de <%= link_to note.book.title, book_path(note.book) %></i>
+        </h1>
       </div>
-      <div>
-        <i class="material-icons">import_export</i>
-        <%= link_to 'Export', export_book_index_path(@book.id), method: :post %>
+
+      <div class="notepaper">
+        <%= sanitize GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, note.content) %>
+      </div>
+
+      <div class="notepaper">
+        <div class="actions">
+          <%= link_to edit_note_path(note) do %>
+            <i class="material-icons">create</i>
+          <% end %>
+          <%= link_to export_note_index_path(note.id), method: :post, target: :_blank  do %>
+            <i class="material-icons">import_export</i>
+          <% end %>
+        </div>
       </div>
     </div>
+  <% end %>
   </div>
 </div>

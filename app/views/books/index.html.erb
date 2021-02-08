@@ -1,18 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <div class="header">
   <div class="section-title">
     <img src=<%=asset_path('amethyst.png')%>>
-    <h1>
+    <h2>
       My books
       <%= link_to new_book_path, class: "new-book-link" do %>
         <i class="material-icons">add_circle</i>
       <% end %>
-    </h1>
+    </h2>
   </div>
 </div>
 
-<div>
+<div class="book-list">
   <% @books.each do |book| %>
     <div class="book">
       <div class="brand" style="background: #<%= Random.bytes(3).unpack1('H*') %>"></div>

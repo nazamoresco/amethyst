@@ -11,22 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <div class="book-form">
+    <div>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+    <div>
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
 
-  <div class="field">
-    <%= form.label :book %>
-    <%= form.collection_select :book, Book.all, :id, :title, prompt: true  %>
-  </div>
+    <div>
+      <%= form.label :book %>
+      <%= form.collection_select :book, current_user.books, :id, :title, prompt: true  %>
+    </div>
 
-  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+<%
+=begin%>
+  https://codepen.io/designcouch/pen/vlpiC
+<%
+=end%>

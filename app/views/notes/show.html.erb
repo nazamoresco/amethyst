@@ -2,21 +2,23 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @note.title %>
-</p>
+<div class="notepaper">
+  <h1 class="align">
+    <%= @note.title %> <i>de <%= link_to @note.book.title, book_path(@note.book) %></i>
+  </h1>
+</div>
 
-<p>
-  <strong>Content:</strong>
+<div class="notepaper">
   <%= sanitize GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, @note.content) %>
-</p>
+</div>
 
-<p>
-  <strong>Book:</strong>
-  <%= link_to @note.book.title, book_path(@note.book) %>
-</p>
-
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Export', export_note_index_path(@note.id), method: :post, target: :_blank  %> |
-<%= link_to 'Back', notes_path %>
+<div class="notepaper">
+  <div class="actions">
+    <%= link_to edit_note_path(@note) do %>
+      <i class="material-icons">create</i>
+    <% end %>
+    <%= link_to export_note_index_path(@note.id), method: :post, target: :_blank  do %>
+      <i class="material-icons">import_export</i>
+    <% end %>
+  </div>
+</div>
