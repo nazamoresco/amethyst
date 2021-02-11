@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books
+
+  after_create :create_default_book
+
+  def create_default_book
+    Book.create(title: Rails.application.config.default_book, user: self)
+  end
 end

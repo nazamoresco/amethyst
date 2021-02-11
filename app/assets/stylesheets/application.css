@@ -15,3 +15,6 @@
  *= require material_icons
  */
 
+ #error {
+   color: red
+ }
